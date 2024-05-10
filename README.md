@@ -25,65 +25,27 @@ This commands includes
 <BR>
 • Other IP Commands e.g. show ip route etc.
 <BR>
-PROGRAM:
-PING COMMAND:
-CLIENT:
-import socket
-from pythonping import ping
-s=socket.socket()
-s.bind(('localhost',8000))
-s.listen(5)
-while True:
-    c,addr=s.accept()
-    print("Connecting from ",addr)
-    try:
-        hostname=c.recv(1024).decode().strip()
-        if hostname:
-            try:
-                response=str(ping(hostname,verbose=True))
-                c.send(response.encode())
-            except Exception as e:
-                c.send("ping failed  {}".format(e).encode())
-        else:
-            c.send("Hostname not provided".encode())
-    except Exception as e:
-        print("Error: ",e)
-    finally:
-        c.close()
-SERVER:
-import socket
-s=socket.socket()
-s.connect(('localhost',8000))
-try:
-    while True:
-        ip= input("Enter Website u want to ping :")
-        s.send(ip.encode())
-        response=s.recv(1024).decode()
-        if response:
-            print ("Ping result :",response)
-        else:
-            print ("No response from server")
-except Exception as e:
-    print ("Error:", e)
-finally:
-    s.close()
-
-TRACEROUTE COMMAND:
-from scapy.all import* 
-target = ["www.google.com"] 
-result, unans = traceroute(target,maxttl=32) 
-print(result,unans)
 
 
 ## Output
-CLIENT:
-![image](https://github.com/Santhoshstudent/4.Execution_of_NetworkCommends/assets/145446853/7336356d-123c-493e-ad74-5d29c70fedd9)
+![image](https://github.com/Santhoshstudent/4.Execution_of_NetworkCommends/assets/145446853/4c612cff-4780-481d-af05-24d16d5cbc27)
 
-SERVER:
-![image](https://github.com/Santhoshstudent/4.Execution_of_NetworkCommends/assets/145446853/55a3bd33-72c6-4953-a6cb-dab83f6619e7)
+![image](https://github.com/Santhoshstudent/4.Execution_of_NetworkCommends/assets/145446853/a6355a8b-8c67-47a0-b9db-e1dfdcfed5a5)
 
-TRACEROUTE COMMAND:
-![image](https://github.com/Santhoshstudent/4.Execution_of_NetworkCommends/assets/145446853/f88c246b-ffd7-4c7a-b709-926cc83bcdb7)
+![image](https://github.com/Santhoshstudent/4.Execution_of_NetworkCommends/assets/145446853/3272404f-efa9-4582-8652-ec01bda93f6b)
+
+![image](https://github.com/Santhoshstudent/4.Execution_of_NetworkCommends/assets/145446853/7d07da3b-afe8-41cd-bde0-fc50c4425fde)
+
+![image](https://github.com/Santhoshstudent/4.Execution_of_NetworkCommends/assets/145446853/d7afd905-2105-4c38-8c30-24a1958ed295)
+
+![image](https://github.com/Santhoshstudent/4.Execution_of_NetworkCommends/assets/145446853/3035f9ff-6da6-4fbd-a08f-06c6f5b60a9d)
+
+![image](https://github.com/Santhoshstudent/4.Execution_of_NetworkCommends/assets/145446853/f91bd1ea-02f0-47a6-8689-aef83db41a04)
+
+
+
+
+
 
 
 
